@@ -485,8 +485,6 @@ body {
   background: linear-gradient(165deg, rgba(0, 0, 0, 0.2), rgba(0,0,0,.05));
   border-radius: 16px;
 }
-  animation: slideInRight 0.6s ease-out;
-}
 
 .side-content {
   color: white;
