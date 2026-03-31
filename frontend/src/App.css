@@ -482,53 +482,88 @@ body {
   padding: 2rem;
   margin-left: 2rem;
   animation: slideInRight 0.6s ease-out;
-  background: linear-gradient(165deg, rgba(0, 0, 0, 0.2), rgba(0,0,0,.05));
-  border-radius: 16px;
+  background: linear-gradient(150deg, rgba(15, 22, 82, 0.85), rgba(65, 46, 136, 0.95));
+  border-radius: 18px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+  position: relative;
+  overflow: hidden;
+}
+
+.login-side-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.12), transparent 40%),
+              radial-gradient(circle at 80% 80%, rgba(123, 90, 240, 0.35), transparent 45%);
+  pointer-events: none;
 }
 
 .side-content {
   color: white;
+  position: relative;
+  z-index: 1;
 }
 
 .side-content h3 {
-  font-size: 1.8rem;
-  margin: 0 0 2rem 0;
-  font-weight: 700;
+  font-size: 2rem;
+  margin: 0 0 1.5rem 0;
+  font-weight: 800;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+  text-shadow: 0 4px 18px rgba(0, 0, 0, 0.3);
 }
 
 .feature-list {
   list-style: none;
   padding: 0;
   margin: 0;
+  display: grid;
+  gap: 1rem;
 }
 
 .feature-list li {
-  display: flex;
-  gap: 1.2rem;
-  margin-bottom: 1.5rem;
-  opacity: 0.95;
-  transition: transform 0.2s ease;
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 0.8rem;
+  align-items: start;
+  padding: 0.95rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .feature-list li:hover {
-  transform: translateX(10px);
+  transform: translateY(-5px);
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 14px 25px rgba(0, 0, 0, 0.2);
 }
 
 .feature-icon {
-  font-size: 1.8rem;
-  flex-shrink: 0;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(255,255,255,0.25), rgba(255,255,255,0.12));
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  font-size: 1.2rem;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
 }
 
 .feature-list strong {
   display: block;
-  margin-bottom: 0.3rem;
-  font-weight: 600;
+  margin-bottom: 0.2rem;
+  font-weight: 700;
+  color: #eef3ff;
 }
 
 .feature-list p {
   margin: 0;
-  font-size: 0.9rem;
-  opacity: 0.9;
+  font-size: 0.93rem;
+  color: rgba(236, 241, 255, 0.92);
+  line-height: 1.4;
 }
 
 /* LEGACY AUTH CONTAINER SUPPORT */
