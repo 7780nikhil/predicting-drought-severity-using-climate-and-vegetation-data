@@ -205,6 +205,16 @@ const Login = ({ setAuth }) => {
                         </button>
                     </form>
 
+                    <div className="auth-divider">Or continue with</div>
+                    <div className="social-buttons">
+                        <button type="button" className="social-btn social-google" onClick={()=>alert('Google OAuth placeholder')}> 
+                            <span>G</span> Sign in with Google
+                        </button>
+                        <button type="button" className="social-btn social-github" onClick={()=>alert('GitHub OAuth placeholder')}>
+                            <span>🐙</span> Sign in with GitHub
+                        </button>
+                    </div>
+
                     <div className="login-footer">
                         <p>
                             Don't have an account? 

@@ -265,6 +265,16 @@ const Register = () => {
                         </button>
                     </form>
 
+                    <div className="auth-divider">Or sign up with</div>
+                    <div className="social-buttons">
+                        <button type="button" className="social-btn social-google" onClick={()=>alert('Google OAuth placeholder')}>
+                            <span>G</span> Continue with Google
+                        </button>
+                        <button type="button" className="social-btn social-github" onClick={()=>alert('GitHub OAuth placeholder')}>
+                            <span>🐙</span> Continue with GitHub
+                        </button>
+                    </div>
+
                     <div className="login-footer">
                         <p>
                             Already have an account? 

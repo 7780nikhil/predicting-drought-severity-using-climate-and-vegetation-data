@@ -401,15 +401,90 @@ body {
   transition: color 0.2s ease;
 }
 
-.register-link:hover {
-  color: #764ba2;
+.auth-divider {
+  text-align: center;
+  color: #8a90a6;
+  margin: 1.2rem 0 0.8rem;
+  font-size: 0.85rem;
+  position: relative;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 40%;
+  height: 1px;
+  background: #dfe6f0;
+}
+
+.auth-divider::before {
+  left: 0;
+}
+
+.auth-divider::after {
+  right: 0;
+}
+
+.social-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 1.8rem;
+}
+
+.social-btn {
+  border: 1px solid #d3dce6;
+  border-radius: 8px;
+  padding: 0.75rem;
+  background: white;
+  color: #2f3c63;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+  min-height: 44px;
+}
+
+.social-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(97, 122, 169, 0.18);
+}
+
+.social-google {
+  color: #de4d41;
+  border-color: #f1dad8;
+}
+
+.social-github {
+  color: #24292e;
+  border-color: #d1d5da;
+}
+
+.social-btn span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-btn span:first-child {
+  font-size: 1rem;
+  width: 20px;
 }
 
 .login-side-panel {
-  display: none;
+  display: block;
   flex: 1;
   padding: 2rem;
   margin-left: 2rem;
+  animation: slideInRight 0.6s ease-out;
+  background: linear-gradient(165deg, rgba(0, 0, 0, 0.2), rgba(0,0,0,.05));
+  border-radius: 16px;
+}
   animation: slideInRight 0.6s ease-out;
 }
 
