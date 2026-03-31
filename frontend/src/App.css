@@ -95,6 +95,16 @@ body {
   margin: auto;
   overflow: hidden;
   animation: slideInLeft 0.6s ease-out;
+  position: relative;
+}
+
+.login-container::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 20% 20%, rgba(102, 126, 234, 0.1), transparent 35%),
+                    radial-gradient(circle at 80% 70%, rgba(118, 75, 162, 0.08), transparent 45%);
+  pointer-events: none;
 }
 
 .login-header {
@@ -120,7 +130,12 @@ body {
 .logo-icon {
   font-size: 3rem;
   margin-bottom: 0.5rem;
-  animation: fadeIn 0.8s ease-out;
+  animation: fadeIn 0.8s ease-out, float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
 }
 
 .login-header h1 {
@@ -159,6 +174,40 @@ body {
   color: #95a5a6;
   font-size: 0.95rem;
 }
+
+.premium-notice {
+  background: linear-gradient(130deg, rgba(102, 126, 234, 0.12), rgba(118, 75, 162, 0.12));
+  border: 1px solid rgba(101, 115, 220, 0.35);
+  border-radius: 12px;
+  padding: 0.85rem;
+  margin-bottom: 1.3rem;
+  text-align: left;
+}
+
+.pill {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.95);
+  color: #3458a1;
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  margin-bottom: 0.45rem;
+  box-shadow: 0 2px 8px rgba(38, 84, 180, 0.2);
+}
+
+.notice-list {
+  margin-top: 0.55rem;
+  padding-left: 1rem;
+  list-style: disc;
+  color: #2e3d55;
+  font-size: 0.9rem;
+}
+
+.notice-list li {
+  margin: 0.2rem 0;
+}
+
 
 .login-form {
   margin-top: 2rem;

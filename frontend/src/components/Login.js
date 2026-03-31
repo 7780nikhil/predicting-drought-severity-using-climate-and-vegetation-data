@@ -96,6 +96,15 @@ const Login = ({ setAuth }) => {
                         <p>Sign in to access the drought severity prediction dashboard</p>
                     </div>
 
+                    <div className="premium-notice">
+                        <span className="pill">🚀 Pro Tools</span>
+                        <ul className="notice-list">
+                            <li>Lightning-fast predictions</li>
+                            <li>Predictive trends & alerts</li>
+                            <li>Smart regional insights</li>
+                        </ul>
+                    </div>
+
                     {error && (
                         <div className="alert alert-error">
                             <span className="alert-icon">✕</span>
