@@ -239,32 +239,52 @@ const Login = ({ setAuth }) => {
                 <div className="side-content">
                     <h3>Why Choose Our Platform?</h3>
                     <ul className="feature-list">
-                        <li>
+                        <li className="feature-item">
                             <span className="feature-icon">📊</span>
                             <div>
                                 <strong>Real-time Analysis</strong>
                                 <p>Get instant drought predictions based on climate data</p>
                             </div>
+                            <div className="feature-preview">
+                                <div className="preview-title">Live prediction curve</div>
+                                <div className="preview-img" style={{backgroundImage: 'linear-gradient(135deg, #3f77df, #7b55d5)'}}></div>
+                                <small>Example: rainfall vs drought risk in 10s</small>
+                            </div>
                         </li>
-                        <li>
+                        <li className="feature-item">
                             <span className="feature-icon">🌍</span>
                             <div>
                                 <strong>Multi-Region Support</strong>
                                 <p>Monitor multiple regions simultaneously</p>
                             </div>
+                            <div className="feature-preview">
+                                <div className="preview-title">Region comparison map</div>
+                                <div className="preview-img" style={{backgroundImage: 'linear-gradient(135deg, #1da1f2, #37d9a8)'}}></div>
+                                <small>Example: colored map overlays per zone</small>
+                            </div>
                         </li>
-                        <li>
+                        <li className="feature-item">
                             <span className="feature-icon">🤖</span>
                             <div>
                                 <strong>AI-Powered</strong>
                                 <p>Advanced machine learning models for accuracy</p>
                             </div>
+                            <div className="feature-preview">
+                                <div className="preview-title">Model confidence chart</div>
+                                <div className="preview-img" style={{backgroundImage: 'linear-gradient(135deg, #f5a623, #e84f5b)'}}></div>
+                                <small>Example: model accuracy and trend scores</small>
+                            </div>
                         </li>
-                        <li>
+                        <li className="feature-item">
                             <span className="feature-icon">📈</span>
                             <div>
                                 <strong>Detailed Insights</strong>
                                 <p>Comprehensive reports and trend analysis</p>
+                            </div>
+                            <div className="feature-preview">
+                                <div className="preview-title">Insight dashboard snapshot</div>
+                                <div className="preview-img" style={{backgroundImage: 'linear-gradient(135deg, #6a4ef4, #4db1f1)'}}></div>
+                                <small>Example: charts, tables, and predictions</small>
                             </div>
                         </li>
                     </ul>
