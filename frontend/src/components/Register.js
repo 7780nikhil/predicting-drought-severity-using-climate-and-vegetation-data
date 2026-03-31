@@ -9,111 +9,308 @@ const Register = () => {
     const [message, setMessage] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const [usernameError, setUsernameError] = useState('');
+    const [passwordError, setPasswordError] = useState('');
+    const [confirmPasswordError, setConfirmPasswordError] = useState('');
     const navigate = useNavigate();
+
+    const validateInputs = () => {
+        let isValid = true;
+        setUsernameError('');
+        setPasswordError('');
+        setConfirmPasswordError('');
+
+        if (!username.trim()) {
+            setUsernameError('Username is required');
+            isValid = false;
+        } else if (username.trim().length < 3) {
+            setUsernameError('Username must be at least 3 characters');
+            isValid = false;
+        }
+
+        if (!password) {
+            setPasswordError('Password is required');
+            isValid = false;
+        } else if (password.length < 6) {
+            setPasswordError('Password must be at least 6 characters');
+            isValid = false;
+        }
+
+        if (!confirmPassword) {
+            setConfirmPasswordError('Please confirm your password');
+            isValid = false;
+        } else if (password !== confirmPassword) {
+            setConfirmPasswordError('Passwords do not match');
+            isValid = false;
+        }
+
+        return isValid;
+    };
 
     const handleRegister = async (e) => {
         e.preventDefault();
         setError('');
         setMessage('');
-        
-        // Validate password match
-        if (password !== confirmPassword) {
-            setError('Passwords do not match!');
+
+        if (!validateInputs()) {
             return;
         }
-        
-        // Validate password strength
-        if (password.length < 6) {
-            setError('Password must be at least 6 characters long');
-            return;
-        }
-        
+
         setLoading(true);
         try {
-            await axios.post('http://localhost:5000/auth/register', { username, password });
+            await axios.post('http://localhost:5000/auth/register', { 
+                username: username.trim(), 
+                password 
+            });
             setMessage('✓ Registration successful! Redirecting to login...');
-            setTimeout(() => navigate('/login'), 2000);
+            setTimeout(() => navigate('/login'), 1500);
         } catch (err) {
-            setError(err.response?.data?.error || 'Registration failed. Please try again.');
+            const errorMsg = err.response?.data?.error || 'Registration failed. Please try again.';
+            setError(errorMsg);
         } finally {
             setLoading(false);
         }
     };
 
+    const getPasswordStrength = () => {
+        if (!password) return { label: '', color: '', width: '0%' };
+        
+        let strength = 0;
+        if (password.length >= 6) strength++;
+        if (password.length >= 10) strength++;
+        if (/[a-z]/.test(password) && /[A-Z]/.test(password)) strength++;
+        if (/[0-9]/.test(password)) strength++;
+        if (/[^a-zA-Z0-9]/.test(password)) strength++;
+
+        const strengthLevels = ['Weak', 'Fair', 'Good', 'Strong', 'Very Strong'];
+        const colors = ['#e74c3c', '#f39c12', '#f1c40f', '#2ecc71', '#27ae60'];
+        
+        return {
+            label: strengthLevels[strength] || 'Weak',
+            color: colors[strength] || '#e74c3c',
+            width: `${(strength + 1) * 20}%`
+        };
+    };
+
+    const passwordStrength = getPasswordStrength();
+
     return (
-        <div className="auth-container">
-            <h2>📝 User Registration</h2>
-            <p style={{ color: '#7f8c8d', marginBottom: '1.5rem' }}>
-                Create an account to start predicting drought severity
-            </p>
-            <form onSubmit={handleRegister}>
-                <div className="form-group">
-                    <label>Username</label>
-                    <input 
-                        type="text" 
-                        value={username} 
-                        onChange={(e) => setUsername(e.target.value)} 
-                        required 
-                        placeholder="Choose a username"
-                        autoComplete="username"
-                        minLength="3"
-                    />
+        <div className="login-wrapper">
+            <div className="login-container">
+                <div className="login-header">
+                    <div className="logo-icon">💧</div>
+                    <h1>Drought Predictor</h1>
+                    <p className="subtitle">Join Our Climate Community</p>
                 </div>
-                <div className="form-group">
-                    <label>Password</label>
-                    <input 
-                        type="password" 
-                        value={password} 
-                        onChange={(e) => setPassword(e.target.value)} 
-                        required 
-                        placeholder="Choose a password"
-                        autoComplete="new-password"
-                        minLength="6"
-                    />
-                    <small>Minimum 6 characters</small>
+
+                <div className="login-form-wrapper">
+                    <div className="login-title-section">
+                        <h2>Create Account</h2>
+                        <p>Register to access advanced drought prediction tools</p>
+                    </div>
+
+                    {error && (
+                        <div className="alert alert-error">
+                            <span className="alert-icon">✕</span>
+                            <span className="alert-text">{error}</span>
+                        </div>
+                    )}
+
+                    {message && (
+                        <div className="alert alert-success">
+                            <span className="alert-icon">✓</span>
+                            <span className="alert-text">{message}</span>
+                        </div>
+                    )}
+
+                    <form onSubmit={handleRegister} className="login-form">
+                        <div className="form-group-enhanced">
+                            <label htmlFor="username" className="form-label">
+                                <span className="label-icon">👤</span>
+                                <span>Username</span>
+                            </label>
+                            <input 
+                                id="username"
+                                type="text" 
+                                value={username} 
+                                onChange={(e) => {
+                                    setUsername(e.target.value);
+                                    setUsernameError('');
+                                }}
+                                onBlur={() => {
+                                    if (username.trim().length > 0 && username.trim().length < 3) {
+                                        setUsernameError('Username must be at least 3 characters');
+                                    }
+                                }}
+                                placeholder="Choose a username"
+                                autoComplete="username"
+                                className={`form-input ${usernameError ? 'input-error' : ''}`}
+                            />
+                            {usernameError && <div className="error-text">{usernameError}</div>}
+                        </div>
+
+                        <div className="form-group-enhanced">
+                            <label htmlFor="password" className="form-label">
+                                <span className="label-icon">🔒</span>
+                                <span>Password</span>
+                            </label>
+                            <div className="password-input-wrapper">
+                                <input 
+                                    id="password"
+                                    type={showPassword ? 'text' : 'password'} 
+                                    value={password} 
+                                    onChange={(e) => {
+                                        setPassword(e.target.value);
+                                        setPasswordError('');
+                                    }}
+                                    onBlur={() => {
+                                        if (password.length > 0 && password.length < 6) {
+                                            setPasswordError('Password must be at least 6 characters');
+                                        }
+                                    }}
+                                    placeholder="Choose a password"
+                                    autoComplete="new-password"
+                                    className={`form-input password-input ${passwordError ? 'input-error' : ''}`}
+                                />
+                                <button
+                                    type="button"
+                                    className="toggle-password-btn"
+                                    onClick={() => setShowPassword(!showPassword)}
+                                    title={showPassword ? 'Hide password' : 'Show password'}
+                                >
+                                    {showPassword ? '👁️' : '👁️‍🗨️'}
+                                </button>
+                            </div>
+                            {passwordError && <div className="error-text">{passwordError}</div>}
+                            
+                            {password && (
+                                <div className="password-strength-container">
+                                    <div className="strength-label">
+                                        <span>Password strength:</span>
+                                        <span style={{ color: passwordStrength.color, fontWeight: 600 }}>
+                                            {passwordStrength.label}
+                                        </span>
+                                    </div>
+                                    <div className="strength-bar">
+                                        <div 
+                                            className="strength-fill" 
+                                            style={{ 
+                                                width: passwordStrength.width,
+                                                backgroundColor: passwordStrength.color
+                                            }}
+                                        ></div>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+
+                        <div className="form-group-enhanced">
+                            <label htmlFor="confirmPassword" className="form-label">
+                                <span className="label-icon">✓</span>
+                                <span>Confirm Password</span>
+                            </label>
+                            <div className="password-input-wrapper">
+                                <input 
+                                    id="confirmPassword"
+                                    type={showConfirmPassword ? 'text' : 'password'} 
+                                    value={confirmPassword} 
+                                    onChange={(e) => {
+                                        setConfirmPassword(e.target.value);
+                                        setConfirmPasswordError('');
+                                    }}
+                                    onBlur={() => {
+                                        if (confirmPassword && password !== confirmPassword) {
+                                            setConfirmPasswordError('Passwords do not match');
+                                        }
+                                    }}
+                                    placeholder="Confirm your password"
+                                    autoComplete="new-password"
+                                    className={`form-input password-input ${confirmPasswordError ? 'input-error' : ''}`}
+                                />
+                                <button
+                                    type="button"
+                                    className="toggle-password-btn"
+                                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                                    title={showConfirmPassword ? 'Hide password' : 'Show password'}
+                                >
+                                    {showConfirmPassword ? '👁️' : '👁️‍🗨️'}
+                                </button>
+                            </div>
+                            {confirmPasswordError && <div className="error-text">{confirmPasswordError}</div>}
+                            {password === confirmPassword && confirmPassword && (
+                                <div style={{ marginTop: '0.4rem', fontSize: '0.85rem', color: '#27ae60', display: 'flex', alignItems: 'center' }}>
+                                    ✓ Passwords match
+                                </div>
+                            )}
+                        </div>
+
+                        <button 
+                            type="submit" 
+                            disabled={loading}
+                            className="login-btn"
+                        >
+                            {loading ? (
+                                <>
+                                    <span className="spinner"></span>
+                                    <span>Creating Account...</span>
+                                </>
+                            ) : (
+                                <>
+                                    <span>Create Account</span>
+                                    <span className="btn-arrow">→</span>
+                                </>
+                            )}
+                        </button>
+                    </form>
+
+                    <div className="login-footer">
+                        <p>
+                            Already have an account? 
+                            <Link to="/login" className="register-link">
+                                Sign in here
+                            </Link>
+                        </p>
+                    </div>
                 </div>
-                <div className="form-group">
-                    <label>Confirm Password</label>
-                    <input 
-                        type="password" 
-                        value={confirmPassword} 
-                        onChange={(e) => setConfirmPassword(e.target.value)} 
-                        required 
-                        placeholder="Confirm your password"
-                        autoComplete="new-password"
-                    />
+            </div>
+
+            <div className="login-side-panel">
+                <div className="side-content">
+                    <h3>Get Started Now</h3>
+                    <ul className="feature-list">
+                        <li>
+                            <span className="feature-icon">🚀</span>
+                            <div>
+                                <strong>Quick Setup</strong>
+                                <p>Create your account in seconds</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span className="feature-icon">📊</span>
+                            <div>
+                                <strong>Instant Access</strong>
+                                <p>Start predicting immediately</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span className="feature-icon">🔐</span>
+                            <div>
+                                <strong>Secure</strong>
+                                <p>Your data is protected</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span className="feature-icon">📈</span>
+                            <div>
+                                <strong>Track Progress</strong>
+                                <p>Monitor predictions over time</p>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-                <button type="submit" disabled={loading}>
-                    {loading ? '🔄 Creating Account...' : '✓ Create Account'}
-                </button>
-            </form>
-            {message && (
-                <div style={{ 
-                    marginTop: '1rem', 
-                    padding: '12px', 
-                    backgroundColor: '#d4edda', 
-                    color: '#155724',
-                    borderRadius: '6px',
-                    fontSize: '0.9rem'
-                }}>
-                    {message}
-                </div>
-            )}
-            {error && (
-                <div style={{ 
-                    marginTop: '1rem', 
-                    padding: '12px', 
-                    backgroundColor: '#f8d7da', 
-                    color: '#721c24',
-                    borderRadius: '6px',
-                    fontSize: '0.9rem'
-                }}>
-                    ⚠️ {error}
-                </div>
-            )}
-            <p style={{ marginTop: '1.5rem', color: '#7f8c8d' }}>
-                Already have an account? <Link to="/login">Login here</Link>
-            </p>
+            </div>
         </div>
     );
 };
