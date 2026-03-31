@@ -222,14 +222,85 @@ body {
   display: flex;
   align-items: center;
   margin-bottom: 0.6rem;
-  font-weight: 600;
-  color: #2c3e50;
-  font-size: 0.95rem;
+  font-weight: 700;
+  color: #2a3a66;
+  font-size: 0.96rem;
+  letter-spacing: 0.02em;
 }
 
 .label-icon {
   margin-right: 0.6rem;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.98rem 1rem;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  box-shadow: 0 0 0 1px rgba(116, 126, 170, 0.2);
+  font-size: 1rem;
+  transition: all 0.35s ease;
+  background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.65));
+  color: #163255;
+  backdrop-filter: blur(8px);
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: transparent;
+  box-shadow: 0 0 15px rgba(102, 126, 234, 0.45), 0 0 0 1px rgba(102, 126, 234, 0.4);
+  background: linear-gradient(135deg, rgba(255,255,255,1), rgba(255,255,255,0.85));
+}
+
+.form-input.input-error {
+  box-shadow: 0 0 0 2px rgba(231,76,60,0.4);
+  border-color: #e74c3c;
+  background: #fff5f5;
+}
+
+.form-input::-webkit-input-placeholder {
+  color: #9ba7c1;
+}
+
+.form-input::-moz-placeholder {
+  color: #9ba7c1;
+}
+
+.password-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-input-wrapper::before {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; top: 0; bottom: 0;
+  border-radius: 12px;
+  pointer-events: none;
+  background: linear-gradient(160deg, rgba(102,126,234,0.07), transparent 40%, rgba(118,75,162,0.08));
+}
+
+.password-input {
+  position: relative;
+  z-index: 1;
+}
+
+.toggle-password-btn {
+  right: 12px;
+  top: 10px;
+  color: #576e9f;
+  font-size: 1.12rem;
+  padding: 0.12rem 0.35rem;
+  background: rgba(255,255,255,0.85);
+  border-radius: 50%;
+  border: 1px solid rgba(145, 156, 193, 0.45);
+}
+
+.toggle-password-btn:hover {
+  background: rgba(255,255,255,1);
+  color: #2f4a79;
 }
 
 .form-input {
