@@ -44,8 +44,7 @@ cat .env
 
 **Should contain:**
 ```
-MONGODB_URI=mongodb+srv://climate:Jyothika2406@cluster0.5gzrr5p.mongodb.net/?appName=Cluster0
-DATABASE_NAME=drought_predictor
+MONGODB_URI=mongodb+srv://NIKHIL7780:nikhil12345@cluster0.pdvcjwa.mongodb.net/?appName=Cluster0
 FLASK_PORT=5000
 ```
 

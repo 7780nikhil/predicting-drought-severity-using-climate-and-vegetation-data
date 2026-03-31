@@ -53,9 +53,7 @@ A full-stack machine learning application for predicting drought severity based 
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/Jyothika2406/predicting-drought-severity-using-climate-and-vegetation-data.git
-cd predicting-drought-severity-using-climate-and-vegetation-data
-```
+git clonehttps://github.com/7780nikhil/predicting-drought-severity-using-climate-and-vegetation-data.git
 
 2. **Set up Backend**
 ```bash
@@ -278,9 +276,6 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 This project is open source and available under the MIT License.
 
-## 👥 Authors
-
-- **Jyothika** - [GitHub](https://github.com/Jyothika2406)
 
 ## 🙏 Acknowledgments
 
@@ -306,4 +301,3 @@ For questions or support, please open an issue on GitHub.
 
 ---
 
-**Made with ❤️ for better drought prediction and water resource management**

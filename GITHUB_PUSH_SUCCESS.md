@@ -1,7 +1,7 @@
 # ✅ Successfully Pushed to GitHub!
 
 ## 🎉 Repository URL
-https://github.com/Jyothika2406/predicting-drought-severity-using-climate-and-vegetation-data
+https://github.com/7780nikhil/predicting-drought-severity-using-climate-and-vegetation-data.git
 
 ## 📦 What Was Pushed
 
@@ -100,11 +100,10 @@ Complete drought prediction system with ML model, multi-region support,
 ## 🔗 Repository Links
 
 ### Main Repository
-https://github.com/Jyothika2406/predicting-drought-severity-using-climate-and-vegetation-data
-
+https://github.com/7780nikhil/predicting-drought-severity-using-climate-and-vegetation-data.git
 ### Clone Command
 ```bash
-git clone https://github.com/Jyothika2406/predicting-drought-severity-using-climate-and-vegetation-data.git
+git clone https://github.com/7780nikhil/predicting-drought-severity-using-climate-and-vegetation-data.git
 ```
 
 ### View on GitHub
@@ -131,7 +130,7 @@ The README.md includes:
 ## 🎯 Next Steps
 
 ### 1. View Your Repository
-Visit: https://github.com/Jyothika2406/predicting-drought-severity-using-climate-and-vegetation-data
+Visit: https://github.com/7780nikhil/predicting-drought-severity-using-climate-and-vegetation-data.git
 
 ### 2. Add Repository Description
 On GitHub:
@@ -233,8 +232,8 @@ git push origin main
 
 Your drought prediction system is now live on GitHub and ready to share with the world!
 
-**Repository:** https://github.com/Jyothika2406/predicting-drought-severity-using-climate-and-vegetation-data
+**Repository:** https://github.com/7780nikhil/predicting-drought-severity-using-climate-and-vegetation-data.git
 
 ---
 
-**Made with ❤️ - Your complete ML project is now on GitHub!**
+
